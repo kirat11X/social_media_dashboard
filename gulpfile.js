@@ -16,7 +16,8 @@ function scssTask() {
   return src('app/scss/Style.scss', { sourcemaps: true })
     .pipe(sass())
     .pipe(postcss([autoprefixer(), cssnano()]))
-    .pipe(dest('dist', { sourcemaps: '.' }));
+    .pipe(dest('dist', { sourcemaps: '.' }))
+    .pipe(browsersync.stream());
 }
 
 // JavaScript Task
@@ -49,11 +50,9 @@ function browserSyncReload(cb) {
 
 // Watch Task
 function watchTask() {
-  watch('*.html', browserSyncReload);
-  watch(
-    ['app/scss/**/*.scss', 'app/**/*.js'],
-    series(scssTask, jsTask, browserSyncReload)
-  );
+  watch('*.html').on('change', browsersync.reload);
+  watch('app/scss/**/*.scss', scssTask);
+  watch('app/**/*.js', series(jsTask, browserSyncReload));
 }
 
 // Default Gulp Task
