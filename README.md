@@ -1,106 +1,269 @@
-# Frontend Mentor - Social media dashboard with theme switcher
+# Social Media Dashboard
 
-![Design preview for the Social media dashboard with theme switcher coding challenge](preview.jpg)
+This project is my solution to the Frontend Mentor "Social media dashboard with theme switcher" challenge.
 
-## Welcome! 👋
+I built a responsive dashboard using semantic HTML, SCSS, JavaScript, and a Gulp workflow. The project includes a light/dark theme toggle, reusable card components, responsive layout behavior, and a small build pipeline that compiles SCSS and JavaScript into the `dist` folder.
 
-Thanks for checking out this front-end coding challenge.
+![Design preview for the Social media dashboard with theme switcher coding challenge](./preview.jpg)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML, CSS and a tiny bit of JavaScript.**
+The goal of this project was to recreate the supplied dashboard design as closely as possible and make it responsive across screen sizes.
 
-## The challenge
+Users can:
 
-Your challenge is to build out this Social Media Dashboard and get it looking as close to the design as possible.
+- view a responsive layout for mobile and desktop
+- see hover states on cards and controls
+- switch between light and dark themes
+- keep the selected theme in `localStorage`
+- fall back to the system color preference on first load
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+## What I Built
 
-Your users should be able to:
+This project contains:
 
-- View the optimal layout for the site depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Toggle color theme to their preference
+- a header section with a dashboard title and theme toggle
+- a top summary section for main social media statistics
+- an overview section with smaller metric cards
+- theme handling through CSS custom properties and JavaScript
+- a Gulp-based workflow for compiling SCSS and JS
 
-### Want some support on the challenge? 
+## Tech Stack
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+- HTML5
+- SCSS
+- CSS custom properties
+- JavaScript
+- Gulp
+- Sass
+- Babel
+- BrowserSync
+- Autoprefixer
+- CSSNano
 
-## Where to find everything
+## How The Project Works
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design.
+### Layout
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`.
+The page is divided into:
 
-If you would like the Figma design file to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+- a header
+- a main statistics card section
+- an overview card section
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+Flexbox is used in the header, and CSS Grid is used for the card layouts.
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+### Theme Switching
 
-## Using AI coding assistants
+The theme system works in two layers:
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+1. CSS variables define the default colors for light mode and dark mode.
+2. JavaScript adds either `body.dark` or `body.light` and saves that value in `localStorage`.
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+On first load:
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+- the app checks `localStorage`
+- if nothing is saved, it reads `prefers-color-scheme`
+- it then applies the correct body class and syncs the radio toggle state
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+### Build Process
 
-## Building your project
+Gulp handles the development workflow:
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+- SCSS from `app/scss/Style.scss` is compiled into `dist/Style.css`
+- JavaScript from `app/js/script.js` is transpiled and minified into `dist/script.js`
+- BrowserSync serves the project and refreshes the browser during development
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+## Paths Used In This Project
 
-## Deploying your project
+These are the main paths used in the project and what they do.
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+### Main entry files
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+- `index.html`  
+  Main HTML file for the dashboard.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+- `app/scss/Style.scss`  
+  Main SCSS entry file. It pulls together globals, utilities, and components.
 
-## Create a custom `README.md`
+- `app/js/script.js`  
+  Main JavaScript file for theme switching.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+- `gulpfile.js`  
+  Build and development workflow configuration.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+### Compiled output
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+- `dist/Style.css`  
+  Compiled stylesheet loaded by the HTML file.
 
-## Submitting your solution
+- `dist/script.js`  
+  Compiled JavaScript loaded by the HTML file.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+### SCSS structure
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+- `app/scss/globals/boilerplate.scss`  
+  Base reset and global body styles.
 
-## Sharing your solution
+- `app/scss/globals/colors.scss`  
+  CSS custom properties for both light and dark themes.
 
-There are multiple places you can share your solution:
+- `app/scss/globals/typography.scss`  
+  Typography styles for headings and links.
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community).
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+- `app/scss/globals/layout.scss`  
+  Shared container spacing and layout rules.
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback.
+- `app/scss/components/header.scss`  
+  Header layout and subtitle styling.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+- `app/scss/components/card.scss`  
+  Main social media cards and shared card styles.
 
-## Got feedback for us?
+- `app/scss/components/card-grid.scss`  
+  Grid layout for the overview cards.
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+- `app/scss/components/toggle.scss`  
+  Theme toggle UI styling.
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+- `app/scss/util/functions.scss`  
+  Utility Sass functions such as `rem()`.
 
-**Have fun building!** 🚀
+- `app/scss/util/breakpoints.scss`  
+  Breakpoint mixins for responsive design.
+
+### Asset paths used in HTML
+
+The HTML currently uses these asset paths:
+
+- `./dist/Style.css`
+- `./dist/script.js`
+- `./images/favicon-32x32.png`
+- `/images/icon-facebook.svg`
+- `/images/icon-twitter.svg`
+- `/images/icon-instagram.svg`
+- `/images/icon-youtube.svg`
+- `/images/icon-up.svg`
+- `/images/icon-down.svg`
+
+## Project Structure
+
+```text
+social_media_dashboard/
+├── app/
+│   ├── js/
+│   │   └── script.js
+│   └── scss/
+│       ├── components/
+│       │   ├── card-grid.scss
+│       │   ├── card.scss
+│       │   ├── header.scss
+│       │   ├── toggle.scss
+│       │   └── _index.scss
+│       ├── globals/
+│       │   ├── boilerplate.scss
+│       │   ├── colors.scss
+│       │   ├── fonts.scss
+│       │   ├── layout.scss
+│       │   ├── typography.scss
+│       │   └── _index.scss
+│       ├── util/
+│       │   ├── breakpoints.scss
+│       │   ├── functions.scss
+│       │   └── _index.scss
+│       └── Style.scss
+├── dist/
+│   ├── Style.css
+│   └── script.js
+├── images/
+├── design/
+├── gulpfile.js
+├── index.html
+└── README.md
+```
+
+## Key Concepts Used
+
+### 1. CSS Custom Properties
+
+I used CSS variables to manage theme colors. This made it easier to switch themes without rewriting individual component styles.
+
+### 2. Sass File Organization
+
+I split styles into:
+
+- `globals` for base project styles
+- `components` for reusable UI sections
+- `util` for helper mixins and functions
+
+This made the code easier to read and scale.
+
+### 3. Responsive Design
+
+I used breakpoint mixins to handle layout changes between smaller and larger screens.
+
+### 4. DOM Events And State
+
+The theme toggle uses:
+
+- DOM selection
+- `change` event listeners
+- `localStorage`
+- `matchMedia('(prefers-color-scheme: dark)')`
+
+## Development Commands
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server with file watching:
+
+```bash
+npx gulp
+```
+
+Create a production-style build:
+
+```bash
+npx gulp build
+```
+
+## Notes About The Current Setup
+
+- The SCSS entry file is `Style.scss`, so the compiled CSS file name is `Style.css` with a capital `S`.
+- The project uses Gulp directly through `npx gulp` because there is not yet a custom `"start"` script in `package.json`.
+- Theme switching is handled in JavaScript and visualized through CSS variables.
+
+## What I Learned
+
+While building this project, I practiced:
+
+- organizing SCSS into partials
+- using CSS variables for theme control
+- building a responsive card layout with Grid
+- using Flexbox for header alignment
+- connecting radio inputs to JavaScript behavior
+- saving UI state in `localStorage`
+- using Gulp to compile and serve a frontend project
+
+## Possible Next Improvements
+
+- clean up the placeholder page title and attribution text
+- convert remaining image paths to consistent relative paths
+- add custom npm scripts like `dev` and `build`
+- replace deprecated Sass `map-get()` usage with `map.get()`
+- deploy the project and add live links
+
+## Challenge Source
+
+Frontend Mentor challenge:
+
+- https://www.frontendmentor.io/challenges/social-media-dashboard-with-theme-switcher-6oY8ozp_H
+
+## Author
+
+- GitHub: https://github.com/kirat11X/social_media_dashboard
+
